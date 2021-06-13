@@ -5,7 +5,7 @@ num = [-1, 2, 1, 3, -1, 0, 0, 2, -1]
 # n = int(sys.stdin.readline())
 # num = [int(sys.stdin.readline()) for _ in range(n)]
 
-# 절대값이 높은 순서대로 출력한다.
+# 절대값이 높은 순서대로 정렬한다.
 num.sort(reverse=True, key=lambda x: abs(x))
 print(num)
 # 높은 숫자끼리 곱할 경우 더 높은 숫자가 나온다.
