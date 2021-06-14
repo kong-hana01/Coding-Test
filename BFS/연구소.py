@@ -1,3 +1,4 @@
+# 골드
 # 가로와 세로의 크기가 최대 8이다.
 # 빈칸이 최대인 경우는 바이러스가 1개이고, 나머지는 모두 빈칸인 경우 즉, 63개이다.
 # 모든 빈칸에 벽을 3번씩 세우는 경우의 수는 63*62*61=238,266이다.
@@ -6,11 +7,11 @@
 
 from collections import deque
 import sys, copy, time
-
-# n, m = map(int, sys.stdin.readline().split())
-# graph = [list(map(int, sys.stdin.readline().split())) for _ in range(n)]
-n, m = 7, 7
-graph = [[2, 0, 0, 0, 1, 1, 0], [0, 0, 1, 0, 1, 2, 0], [0, 1, 1, 0, 1, 0, 0], [0, 1, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 1, 1], [0, 1, 0, 0, 0, 0, 0], [0, 1, 0, 0, 0, 0, 0]]
+s = time.time()
+n, m = map(int, sys.stdin.readline().split())
+graph = [list(map(int, sys.stdin.readline().split())) for _ in range(n)]
+# n, m = 7, 7
+# graph = [[2, 0, 0, 0, 1, 1, 0], [0, 0, 1, 0, 1, 2, 0], [0, 1, 1, 0, 1, 0, 0], [0, 1, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 1, 1], [0, 1, 0, 0, 0, 0, 0], [0, 1, 0, 0, 0, 0, 0]]
 blank = []
 queue = deque([])
 count = 0
@@ -43,22 +44,14 @@ def bfs(i, j, k, count, n, m):
                 count += 1
 
     result = (n * m) - (count+wall_count+3)
-    
     return result, graph_
 
 result = 0
-start_time = time.time()
 for i in range(len(blank)):
-    for j in range(len(blank)):
-        if i != j:
-            for k in range(len(blank)):
-                if i != k and j != k:
-                    temp, graph_ = bfs(i, j, k, count, n, m)
-                    if temp > result:
-                        result = temp
+    for j in range(i, len(blank)):
+            for k in range(j, len(blank)):
+                temp, graph_ = bfs(i, j, k, count, n, m)
+                result = max(result, temp)
 
-# result, graph_ = bfs(0, 1, 3, count, n, m)
-
+print(time.time()-s)
 print(result)     
-print(graph_)               
-print(time.time - start_time)
