@@ -41,5 +41,3 @@ else:
                 unplug_count += 1 # 플러그를 하나 뽑아준다.
                 multitap.append(array[i])  # 이후 멀티탭에 전기용품을 꽂아준다.
     print(unplug_count)
-
-
