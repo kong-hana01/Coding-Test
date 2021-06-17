@@ -1,21 +1,12 @@
 from collections import deque
 
 n, m = 4, 5
-#condition = [list(map(int, input().split())) for _ in range(n)]
-condition = [[0, 0, 1, 1, 0], [0, 0, 0, 1, 1], [1, 1, 1, 1, 1], [1, 1, 1, 0, 0]]
-"""
-0 0 1 1 0
-0 0 0 1 1
-1 1 1 1 1
-0 0 0 0 0
-"""
-
+condition = [list(map(int, input().split())) for _ in range(n)]
 
 
 def bfs(row, col):
     """col, row : 시작 지점에 대한 행 열"""
 
-    
     # 입력된 값이 0일 때, 즉 얼음을 만들 수 있는 공간일 때
     if condition[row][col] == 0:
         # 큐 생성
@@ -26,7 +17,6 @@ def bfs(row, col):
         while True:
             if not queue:
                 return 1
-                
             row, col = queue.popleft()
             # 상하좌우로 이동하며 이동한 장소가 0일 떄 큐에 추가
             for dx, dy in [[0, 1], [0, -1], [1, 0], [-1, 0]]:
@@ -36,7 +26,6 @@ def bfs(row, col):
                         queue.append([row+dy, col+dx])
                         # 방문 지점 표시
                         condition[row+dy][col+dx] = 1
-
     return 0
 
 result = 0

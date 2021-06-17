@@ -1,4 +1,0 @@
-# 깃은 add부터 push까지 실행해야 작동함.
-# 알고리즘 문제를 풀면 날마다 실행하자!
-
-git push -u origin main
