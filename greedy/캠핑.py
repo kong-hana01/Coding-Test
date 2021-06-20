@@ -21,4 +21,3 @@ while True:
     elif v % p <= l:
         count += v % p
     print('Case {}:'.format(i), count)
-
