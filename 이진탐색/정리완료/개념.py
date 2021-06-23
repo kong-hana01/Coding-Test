@@ -33,7 +33,7 @@ if result:
 else:
     print('원소가 존재하지 않습니다.')
 
-
+# 구현 2 : 반복문 구현
 def binary_search2(target, start, end):
     while True:
         if start > end:
