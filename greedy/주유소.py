@@ -5,20 +5,15 @@
 import sys
 sys.setrecursionlimit(10**6)
 
-# n = int(sys.stdin.readline())
-# road = list(map(int, sys.stdin.readline().split()))
-# city = list(map(int, sys.stdin.readline().split()))
+n = int(sys.stdin.readline())
+roads = list(map(int, sys.stdin.readline().split()))
+cities = list(map(int, sys.stdin.readline().split()))
 
-# # 리스트.index()함수는 해당 값의 인덱스를 출력해준다. 중복된 값이 다른 원소로 존재한다면 앞에 있는 원소를 기준으로 한다.
-# def calculate_cost(index=n-1, cost=0):
-#     # index : 최소값이 있는 인덱스 (초기값 : 마지막 도시 제외)
-#     # cost : 비용
-#     if index == 0:
-#         return cost
-#     min_cost = min(city[:index])
-#     index_ = city.index(min_cost)
-#     cost += sum(road[index_:index]) * min_cost
-#     return calculate_cost(index_, cost)
+cost = cities[0]
+total_cost = 0
+for i in range(n-1):
+    if cost > cities[i]:
+        cost = cities[i]
+    total_cost += cost * roads[i]
 
-# print(calculate_cost())
-print(ord('a'))
+print(total_cost)

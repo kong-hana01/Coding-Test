@@ -26,15 +26,15 @@ heap = []
 접근방법 1
 
 # 데이터를 입력받아 heap자료구조에서 정렬하기
-# for _ in range(n):
-#     for x in list(map(int, sys.stdin.readline().split())):
-#         heapq.heappush(heap, -x)
+for _ in range(n):
+    for x in list(map(int, sys.stdin.readline().split())):
+        heapq.heappush(heap, -x)
 
-# # 데이터를 뽑아내며 n번째 큰 수를 찾기 위해 최대 힙에서 n번만큼 데이터를 뽑고, result를 매번 삭제해 n번째의 데이터를 얻을 수 있도록 한다.
-# for _ in range(n):
-#     result = heapq.heappop(heap)
+# 데이터를 뽑아내며 n번째 큰 수를 찾기 위해 최대 힙에서 n번만큼 데이터를 뽑고, result를 매번 삭제해 n번째의 데이터를 얻을 수 있도록 한다.
+for _ in range(n):
+    result = heapq.heappop(heap)
 
-# print(abs(result))
+print(abs(result))
 '''
 
 '''
