@@ -1,8 +1,6 @@
 import sys
-# k, n = map(int, sys.stdin.readline().split())
-# lan_lines = [int(sys.stdin.readline()) for _ in range(k)]
-k, n = 4, 2
-lan_lines = [0, 0, 1, 1]
+k, n = map(int, sys.stdin.readline().split())
+lan_lines = [int(sys.stdin.readline()) for _ in range(k)]
 
 start = 0
 end = max(lan_lines)
