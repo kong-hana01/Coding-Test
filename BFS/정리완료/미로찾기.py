@@ -21,8 +21,6 @@ def bfs(n, m):
                 queue.append([ncol, nrow, depth])
                 map_[ncol][nrow] = 0
                 
-        #print(col, row, depth)
-
 
         if col == n-1 and row == m-1:
             return depth
