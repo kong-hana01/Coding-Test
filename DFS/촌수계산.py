@@ -8,7 +8,6 @@ m = int(input())
 graph = [[] for _ in range(n+1)]
 for _ in range(m):
     data = list(map(int, input().split()))
-
     graph[data[0]].append(data[1])
     graph[data[1]].append(data[0])
 
