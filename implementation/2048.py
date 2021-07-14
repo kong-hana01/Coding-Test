@@ -48,3 +48,4 @@ for i in range(n):
                     break
                 k += 1
         # print(board)
+
