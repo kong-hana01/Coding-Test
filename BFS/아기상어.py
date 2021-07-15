@@ -27,7 +27,6 @@ while queue:
     for dx, dy in direction:
         # print(x+dx, y+dy)
         if 0<= x+dx <=n-1 and 0<= y+dy <=n-1 and graph[x+dx][y+dy] <= size and visited[x+dx][y+dy] == 0:
-            
             if 0 < graph[x+dx][y+dy] < size: # 상어가 먹을 수 있는 크기라면
                 # count += 1 # 먹은 횟수 증가
                 t = min(t, visited[x][y] + 1)

@@ -3,12 +3,22 @@
 # 모든 바이러스를 놓을 수 있는 위치에 대해 바이러스를 활성화한 뒤, 각 경우의 수마다 BFS를 실행하며 모든 빈칸에 바이러스가 있게되는 최소 시간을 출력한다.
 # 시간복잡도
 # 최대연산횟수: 50(연구소 가로 크기) x 50(연구소 세로 크기) x 252(바이러스가 존재할 수 있는 위치에 바이러스를 놓는 경우의 수 중 최대값(1 <= M <= 바이러스를 놓을 수 있는 위치 <= 10)) = 약 63만번
+
 from itertools import combinations
 from collections import deque
-import sys
+
+# 바이러스가 존재할 수 있는 위치에 바이러스를 놓는 경우의 수 중 최대값 확인
+max_calculation = 0
+for i in range(1, 11):
+    countOfvirus = len(list(combinations([x for x in range(1, 11)], i)))
+    max_calculation = max(max_calculation, countOfvirus)
+# print(max_calculation)
+
+
 # 문제 풀이
-n, m = map(int, sys.stdin.readline().split())
-lab = [list(sys.stdin.readline().split()) for _ in range(n)]
+n, m = map(int, input().split())
+lab = [list(input().split()) for _ in range(n)]
+# lab = [['2' if x == 2 else '0' for x in range(n)] for _ in range(n)]
 direction = [[1, 0], [-1, 0], [0, 1], [0, -1]]
 
 place = 0
