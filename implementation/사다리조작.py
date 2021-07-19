@@ -6,13 +6,85 @@
 # 2-2. 문제 조건을 만족하기 위해서는 세로 선에 짝수개만큼 가로선이 놓여있어야한다. 따라서 가로선이 홀수인 세로선의 개수가 2개를 초과하면 해당 세로선에 대해서만 경우의 수를 늘려간다.
 # 2-3. 
 # 보류
+import time
+from collections import deque
+n, h = 10, 30
+plane = [[0 for _ in range(n+1)] for _ in range(h+1)]
+# array = [[1, 1], [3, 2], [2, 3], [5, 1], [5, 4]]
+# for i, j in array:
+#     plane[i][j], plane[i][j+1] = 1, 1
+for i in range(n):
+    plane[0][i] = i
 
 from itertools import combinations
 count = 0
-for i in list(combinations([x for x in range(1, 265)], 1)):
-    for j in list(combinations([x for x in range(1+i[0], 263)], 1)):
-        for k in list(combinations([x for x in range(1+i[0]+j[0], 261)], 1)):
-            count += 1
+start = time.time()
+def find_ladder(plane):
+    ladder = []
+    for i in range(1, h+1):
+        for j in range(1, n):
+            if plane[i][j] != 1 and plane[i][j+1] != 1:
+                ladder.append([i, j])
+    return ladder
 
-print(count)
-# print(len(list(combinations([x for x in range(1, 268)], 3))))
+
+# ladder = find_ladder(plane)
+# for i in range(len(ladder)):
+#     plane_ = [x[:] for x in plane]
+#     ladder_ = ladder[:]
+#     x1, y1 = ladder[i]
+#     plane_[x1][y1], plane_[x1][y1+1] = 1, 1
+#     for j in range(i+1, len(ladder_)):
+#         if ladder_[i][1] + 1 == ladder_[j][1] and ladder_[i][0] == ladder[j][0]:
+#             continue
+#         x2, y2 = ladder_[j]
+#         plane_[x2][y2], plane_[x2][y2+1] = 1, 1
+#         for k in range(j+1, len(ladder_)):
+#             if (ladder_[j][1] + 1 == ladder_[k][1] and ladder_[j][0] == ladder[k][0]) or (ladder_[i][1] + 1 == ladder_[k][1] and ladder_[i][0] == ladder[k][0]):
+#                 continue
+#             count += 1
+#             # print(i, j, k)
+#         plane_[x2][y2], plane_[x2][y2+1] = 0, 0
+    
+# print(count)
+# print(time.time()-start)
+
+
+
+
+
+# ladder = find_ladder(plane)
+# for i in range(len(list(combinations(ladder, 1)))):
+#     plane_ = plane[:]
+#     ladder_ = ladder[:]
+#     # x, y = ladder[i]
+#     # plane_[x][y], plane_[x][y+1] = 1, 1
+#     # ladder_ = find_ladder(plane_)
+#     for j in range(i+1, len(list(combinations(ladder, 1)))):
+#         # x, y = ladder[j]
+#         # plane_[x][y], plane_[x][y+1] = 1, 1
+#         # ladder_ = find_ladder(plane_)
+#         for k in range(j+1, len(list(combinations(ladder, 1)))):
+#             count += 1
+#             # print(i, j, k)
+# print(time.time()-start)
+# ladder = find_ladder(plane)
+# for i in range(len(ladder)):
+#     plane_ = [x[:] for x in plane]
+#     ladder_ = ladder[:]
+#     x1, y1 = ladder[i]
+#     plane_[x1][y1], plane_[x1][y1+1] = 1, 1
+#     ladder_ = find_ladder(plane_)
+#     j = i + 1
+#     while j <= len(ladder_) - 1:
+#         x2, y2 = ladder_[j]
+#         plane_[x2][y2], plane_[x2][y2+1] = 1, 1
+#         ladder_ = find_ladder(plane_)
+#         k = j + 1
+#         while k <= len(ladder_) - 1:
+#             count += 1
+#             # print(i, j, k)
+#             k += 1
+#         plane_[x2][y2], plane_[x2][y2+1] = 0, 0
+#         j += 1
+# print(count)
