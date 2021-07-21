@@ -32,14 +32,14 @@ def cubing(order, direction):
         left_ = [[0, 0, 0] for _ in range(3)]
         if direction == '+':
             for i in range(3):
-                front_[i], bottom_[i], back_[i], top_[2-i] = top[i][0], front[i][0], bottom[i][0], back[i][0]
+                front_[i], bottom_[i], back_[i], top_[i] = top[i][0], front[i][0], bottom[i][0], back[i][0]
                 for j in range(3):
                     left_[j][2-i] = left[i][j]
         else:
             for i in range(3):
-                back_[2-i], bottom_[i], front_[i], top_[i] = top[i][0], back[i][0], bottom[i][0], front[i][0]
+                back_[i], bottom_[i], front_[i], top_[i] = top[i][0], back[i][0], bottom[i][0], front[i][0]
                 for j in range(3):
-                    left_[j][i] = left[i][j]
+                    left_[2-j][i] = left[i][j]
 
         for i in range(3):
             front[i][0], bottom[i][0], back[i][0], top[i][0] = front_[i], bottom_[i], back_[i], top_[i]
@@ -60,7 +60,7 @@ def cubing(order, direction):
             for i in range(3):
                 left_[2-i], bottom_[i], right_[2-i], top_[i] = top[2][i], left[i][2], bottom[0][i], right[i][0]
                 for j in range(3):
-                    front_[j][i] = front[i][j]
+                    front_[2-j][i] = front[i][j]
 
         for i in range(3):
             top[2][i], right[i][0], bottom[0][i], left[i][2] = top_[i], right_[i], bottom_[i], left_[i]
@@ -74,34 +74,34 @@ def cubing(order, direction):
         right_ = [[0, 0, 0] for _ in range(3)]
         if direction == '+':
             for i in range(3):
-                back_[2-i], bottom_[i], front_[i], top_[i] = top[i][2], back[i][2], bottom[i][2], front[i][2]
+                back_[i], bottom_[i], front_[i], top_[i] = top[i][2], back[i][2], bottom[i][2], front[i][2]
                 for j in range(3):
                     right_[j][2-i] = right[i][j]
         else:
             for i in range(3):
-                front_[2-i], bottom_[i], back_[i], top_[i] = top[i][2], front[i][2], bottom[i][2], back[i][2]
+                front_[i], bottom_[i], back_[i], top_[i] = top[i][2], front[i][2], bottom[i][2], back[i][2]
                 for j in range(3):
-                    right_[j][i] = right[i][j]
+                    right_[2-j][i] = right[i][j]
         for i in range(3):
             front[i][2], bottom[i][2], back[i][2], top[i][2] = front_[i], bottom_[i], back_[i], top_[i]
             for j in range(3):
                 right[i][j] = right_[i][j]
     # 4. 윗면이 돌아갔을 때
-    # - 시계방향인 경우: 왼쪽면의 윗 행 -> 뒷면의 아래행(역) -> 오른쪽면의 윗 행 -> 앞면의 윗행 -> 왼쪽면의 윗행순으로 바뀐다.
-    # - 반시계방향인 경우: 왼쪽면의 윗 행 -> 앞면의 윗 행 -> 오른쪽면의 윗행 -> 뒷면의 아래행 -> 왼쪽면의 윗행(역)순으로 바뀐다.
+    # - 시계방향인 경우: 왼쪽면의 윗행 -> 뒷면의 아래행(역) -> 오른쪽면의 윗행 -> 앞면의 윗행 -> 왼쪽면의 윗행순으로 바뀐다.
+    # - 반시계방향인 경우: 왼쪽면의 윗행 -> 앞면의 윗행 -> 오른쪽면의 윗행 -> 뒷면의 아래행 -> 왼쪽면의 윗행(역)순으로 바뀐다.
     if order == 'U':
         back_, right_, front_, left_ = [[0, 0, 0] for _ in range(4)]
         top_ = [[0,0,0] for _ in range(3)]
         if direction == '+':
             for i in range(3):
-                back_[2-i], right_[i], front_[i], left_[i] = left[0][i], back[2][i], right[0][i], front[0][i]
+                back_[2-i], right_[2-i], front_[i], left_[i] = left[0][i], back[2][i], right[0][i], front[0][i]
                 for j in range(3):
                     top_[j][2-i] = top[i][j]
         else:
             for i in range(3):
-                front_[i], right_[i], back_[i], left_[2-i] = left[0][i], front[0][i], right[0][i], back[0][i]
+                front_[i], right_[i], back_[2-i], left_[2-i] = left[0][i], front[0][i], right[0][i], back[2][i]
                 for j in range(3):
-                    top_[j][i] = top[i][j]
+                    top_[2-j][i] = top[i][j]
 
         for i in range(3):
             left[0][i], back[2][i], right[0][i], front[0][i] = left_[i], back_[i], right_[i], front_[i]
@@ -117,14 +117,14 @@ def cubing(order, direction):
         bottom_ = [[0,0,0] for _ in range(3)]
         if direction == '+':
             for i in range(3):
-                front_[i], right_[i], back_[2-i], left_[i] = left[2][i], front[2][i], right[2][i], back[0][i]
+                front_[i], right_[i], back_[2-i], left_[2-i] = left[2][i], front[2][i], right[2][i], back[0][i]
                 for j in range(3):
                     bottom_[j][2-i] = bottom[i][j]
         else:
             for i in range(3):
-                back_[i], right_[2-i], front_[i], left_[i] = left[2][i], back[0][i], right[2][i], front[2][i]
+                back_[2-i], right_[2-i], front_[i], left_[i] = left[2][i], back[0][i], right[2][i], front[2][i]
                 for j in range(3):
-                    bottom_[j][i] = bottom[i][j]
+                    bottom_[2-j][i] = bottom[i][j]
 
         for i in range(3):
             left[2][i], back[0][i], right[2][i], front[2][i] = left_[i], back_[i], right_[i], front_[i]
@@ -139,26 +139,27 @@ def cubing(order, direction):
         back_ = [[0,0,0] for _ in range(3)]
         if direction == '+':
             for i in range(3):
-                right_[i], top_[2-i], left_[i], bottom_[2-i] = bottom[2][i], right[i][2], top[0][i], left[i][0]
+                right_[2-i], top_[i], left_[2-i], bottom_[i] = bottom[2][i], right[i][2], top[0][i], left[i][0]
                 for j in range(3):
                     back_[j][2-i] = back[i][j]
         else:
             for i in range(3):
-                left_[2-i], top_[i], right_[2-i], bottom_[i] = bottom[2][i], left[i][0], top[0][i], right[i][2]
+                left_[i], top_[2-i], right_[i], bottom_[2-i] = bottom[2][i], left[i][0], top[0][i], right[i][2]
                 for j in range(3):
-                    back_[j][2-i] = back[i][j]
+                    back_[2-j][i] = back[i][j]
 
         for i in range(3):
             bottom[2][i], right[i][2], top[0][i], left[i][0] = bottom_[i], right_[i], top_[i], left_[i]
             for j in range(3):
                 back[i][j] = back_[i][j]
-
-    print('위:', top)
-    print('왼:', left)
-    print('앞:', front)
-    print('오:', right)
-    print('뒤:', back)
-    print('바닥:', bottom)
+    # print(order, direction)
+    # print('위:', top)
+    # print('왼:', left)
+    # print('앞:', front)
+    # print('오:', right)
+    # print('뒤:', back)
+    # print('바닥:', bottom)
+    # print()
 
 
 for tc in range(int(sys.stdin.readline())):
@@ -174,4 +175,5 @@ for tc in range(int(sys.stdin.readline())):
 
     for i in range(n):
         cubing(orders[i][0], orders[i][1])
-    print(top)
+    for i in range(3):
+        print(top[i][0], top[i][1], top[i][2], sep='')
