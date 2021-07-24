@@ -18,36 +18,36 @@ for _ in range(m):
     trees[r-1][c-1].append(age)
 
 def sprint_summer(n):
-    for col in range(n):
-        for row in range(n):
-            if trees[col][row]:
-                for i in range(len(trees[col][row])):
-                    if trees[col][row][i] <= nourishment_place[col][row]:
-                        nourishment_place[col][row] -= trees[col][row][i]
-                        trees[col][row][i] += 1
+    for row in range(n):
+        for col in range(n):
+            if trees[row][col]:
+                for i in range(len(trees[row][col])):
+                    if trees[row][col][i] <= nourishment_place[row][col]:
+                        nourishment_place[row][col] -= trees[row][col][i]
+                        trees[row][col][i] += 1
                     else:
                         nourishment = 0
                         count = 0
-                        for j in range(i, len(trees[col][row])):
-                            nourishment += trees[col][row][j] // 2
+                        for j in range(i, len(trees[row][col])):
+                            nourishment += trees[row][col][j] // 2
                             count += 1
-                        # nourishment_place[col][row] += sum([x//2 for x in trees[col][row][i:]]) deque 인덱스 사용 불가
-                        nourishment_place[col][row] += nourishment
-                        # trees[col][row] = trees[col][row][:i] deque 인덱스 사용 불가
+                        # nourishment_place[row][col] += sum([x//2 for x in trees[row][col][i:]]) deque 인덱스 사용 불가
+                        nourishment_place[row][col] += nourishment
+                        # trees[row][col] = trees[row][col][:i] deque 인덱스 사용 불가
                         for j in range(count):
-                            trees[col][row].pop()
+                            trees[row][col].pop()
                         break
 
 def autumn_winter(n):
-    for col in range(n):
-        for row in range(n):
-            if trees[col][row]:
-                for i in range(len(trees[col][row])):
-                    if trees[col][row][i] % 5 == 0:
+    for row in range(n):
+        for col in range(n):
+            if trees[row][col]:
+                for i in range(len(trees[row][col])):
+                    if trees[row][col][i] % 5 == 0:
                         for dcol, drow in [[-1, -1], [-1, 0], [-1, 1], [0, -1], [0, 1], [1, -1], [1, 0], [1, 1]]:
                             if 0<=col+dcol<=n-1 and 0<=row+drow<=n-1:
-                                trees[col+dcol][row+drow].appendleft(1)
-            nourishment_place[col][row] += nourishment_add[col][row]
+                                trees[row+drow][col+dcol].appendleft(1)
+            nourishment_place[row][col] += nourishment_add[row][col]
 
 
 for year in range(k):
@@ -56,7 +56,7 @@ for year in range(k):
 
 
 result = 0
-for col in range(n):
-    for row in range(n):
-        result += len(trees[col][row])
+for row in range(n):
+    for col in range(n):
+        result += len(trees[row][col])
 print(result)
