@@ -1,3 +1,54 @@
+# https://www.acmicpc.net/problem/1202
+# 접근방법(21.07.27(화))
+# 1. 보석을 무게를 기준으로 min_heap 정렬을 한다.
+# 2. 가방의 무게를 오름차순으로 정렬한다.
+# 3. 가방의 무게를 하나씩 탐색하며 해당 무게이하인 보석은 모두 pop한 뒤, 보석의 가치를 기준으로 하는 max heap 정렬한다.
+# 4. 이후 max heap에서 가장 큰 가치를 지닌 보석을 더한다.
+
+import sys, heapq
+n, k = map(int, sys.stdin.readline().split())
+jewelries = [list(map(int, sys.stdin.readline().split())) for _ in range(n)]
+bags = [int(sys.stdin.readline()) for _ in range(k)]
+
+# 1번 수행
+jewelry_weight_min_heap = []
+for weight, value in jewelries:
+    heapq.heappush(jewelry_weight_min_heap, [weight, value])
+
+# 2번 수행
+bags.sort()
+
+# 3번 수행
+jewelry_value_max_heap = []
+total_value = 0
+for weight in bags:
+    while jewelry_weight_min_heap and jewelry_weight_min_heap[0][0] <= weight:
+        w, v = heapq.heappop(jewelry_weight_min_heap)
+        heapq.heappush(jewelry_value_max_heap, [-v, w])
+    # 4번 수행
+    if jewelry_value_max_heap:
+        v, w = heapq.heappop(jewelry_value_max_heap)
+        total_value += -v
+
+print(total_value)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # # n, k = map(int, input().split())
 # # jews = [list(map(int, input().split())) for _ in range(n)]
 # # bags = sorted([int(input()) for _ in range(k)])
@@ -33,14 +84,14 @@
 # 이후 보석의 가치가 가장 높은 것을 빼고 이 값과 동일한 값하거나 조금 더 큰 값을 가지는 것을 가방에서 이진탐색을 통해 뺀다(bisect_left -> 해당이 위치하게될 왼쪽 인덱스를 출력한다.).
 # 이때 사용한 가방은 다시 사용할 수 없으므로 방문처리를 해준다.
 
-import sys, heapq
-from bisect import bisect_left
-# n, k = map(int, sys.stdin.readline().split())
-# jewelries = [list(map(int, sys.stdin.readline().split())) for _ in range(n)]
-# bags = [int(sys.stdin.readline()) for _ in range(k)]
-n, k = 3, 2
-jewelries = [[1, 65], [5, 23], [2, 99]]
-bags = [10, 2]
+# import sys, heapq
+# from bisect import bisect_left
+# # n, k = map(int, sys.stdin.readline().split())
+# # jewelries = [list(map(int, sys.stdin.readline().split())) for _ in range(n)]
+# # bags = [int(sys.stdin.readline()) for _ in range(k)]
+# n, k = 3, 2
+# jewelries = [[1, 65], [5, 23], [2, 99]]
+# bags = [10, 2]
 
 # bags.sort()
 # used = [False] * k
@@ -105,31 +156,3 @@ bags = [10, 2]
 
 
 
-
-import sys, heapq
-n, k = map(int, sys.stdin.readline().split())
-jewelries = [list(map(int, sys.stdin.readline().split())) for _ in range(n)]
-bags = [int(sys.stdin.readline()) for _ in range(k)]
-
-h = []
-for x in jewelries:
-    heapq.heappush(h, [-x[1], x[0]]) # min-heap이기에 보석의 가치를 음수처리하여 제일 상단에 위치하도록 한다. [[보석1의 가치, 보석1의 무게], ...]
-
-bags.sort(reverse = True)
-
-total_value = 0
-while bags:
-    weight_of_bag = bags.pop()
-    temp_list = []
-    while h:
-        value, weight_of_jewelry = heapq.heappop(h)
-        if weight_of_jewelry > weight_of_bag:
-            temp_list.append([weight_of_jewelry, value])
-        else:
-            total_value += abs(value)
-            break
-
-    for x in temp_list:
-        heapq.heappush(h, [-x[1], x[0]])
-
-print(total_value)

@@ -7,48 +7,47 @@
 # 5. D(삭제명령)을 받았을 때는 개수를 하나씩 삭제하고, 만약 개수가 0이라면 EMPTY를 출력한다.
 # 6. 연산이 종료되면 최소 힙과 최대 힙의 원소의 공통된 원소 중 가장 높은 값과 낮은 값을 출력한다.
 
-import heapq, sys
-from bisect import bisect_left, bisect_right
+# import heapq, sys
+# from bisect import bisect_left, bisect_right
 
-def search_check(heap, x):
-    left = bisect_left(heap, x)
-    right = bisect_right(heap, x)
-    print(right, left)
-    return right-left
+# def search_check(heap, x):
+#     left = bisect_left(heap, x)
+#     right = bisect_right(heap, x)
+#     print(right, left)
+#     return right-left
 
+# min_heap = []
+# max_heap = []
+# for t in range(int(sys.stdin.readline())):
+#     count = 0
+#     max_i = 0
+#     for k in range(int(sys.stdin.readline())):
+#         order = list(sys.stdin.readline().split())
+#         if order[0] == 'I':
+#             heapq.heappush(min_heap, int(order[1]))
+#             heapq.heappush(max_heap, -int(order[1]))
+#             count += 1
+#             # print('삽입:', order[1])
+#         else:
+#             if count == 0:
+#                 continue
+#             elif order[1] == '1':
+#                 while search_check(max_heap, max_heap[0]) > search_check(min_heap, max_heap[0]):
+#                     heapq.heappop(max_heap)
+#                 x = heapq.heappop(max_heap)
+#                 count -= 1
+#                 # print('max_heap 삭제:', -x)
+#             else:
+#                 while search_check(max_heap, max_heap[0]) < search_check(min_heap, max_heap[0]):
+#                     heapq.heappop(min_heap)
+#                 x = heapq.heappop(min_heap)
+#                 count -= 1
+#                 # print('min_heap 삭제:', x)
 
-min_heap = []
-max_heap = []
-for t in range(int(sys.stdin.readline())):
-    count = 0
-    max_i = 0
-    for k in range(int(sys.stdin.readline())):
-        order = list(sys.stdin.readline().split())
-        if order[0] == 'I':
-            heapq.heappush(min_heap, int(order[1]))
-            heapq.heappush(max_heap, -int(order[1]))
-            count += 1
-            # print('삽입:', order[1])
-        else:
-            if count == 0:
-                continue
-            elif order[1] == '1':
-                while search_check(max_heap, max_heap[0]) > search_check(min_heap, max_heap[0]):
-                    heapq.heappop(max_heap)
-                x = heapq.heappop(max_heap)
-                count -= 1
-                # print('max_heap 삭제:', -x)
-            else:
-                while search_check(max_heap, max_heap[0]) < search_check(min_heap, max_heap[0]):
-                    heapq.heappop(min_heap)
-                x = heapq.heappop(min_heap)
-                count -= 1
-                # print('min_heap 삭제:', x)
-
-    if count == 0:
-        print('EMPTY')
-    else:
-        print(-max_heap[0], min_heap[0])
+#     if count == 0:
+#         print('EMPTY')
+#     else:
+#         print(-max_heap[0], min_heap[0])
 
 '''
 1
@@ -93,3 +92,22 @@ I 124
 #     else:
 #         array.sort()
 #         print(array[start:len(array)-end])
+
+import heapq, sys
+
+for t in range(int(sys.stdin.readline())):
+    maxHeap = []
+    minHeap = []
+    checkSet = []
+    for n in range(int(sys.stdin.readline())):
+        order = list(sys.sydin.readline().split())
+        if order[0] == 'I':
+            heapq.push(maxHeap, -int(order[1]))
+            heapq.push(minHeap, int(order[1]))
+        elif order[0] == 'D':
+            if order[1] == '1':
+                while -maxHeap[0] in checkSet:
+                    heapq.pop(maxHeap)
+                    checkSet
+                maxValue = -heapq.pop(maxHeap)
+                checkSet.add(maxValue)
