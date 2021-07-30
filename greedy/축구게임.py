@@ -1,0 +1,4 @@
+n = int(input())
+array = list(map(int, input().split()))
+array.sort()
+d = [0] * n
