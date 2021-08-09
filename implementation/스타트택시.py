@@ -18,26 +18,24 @@ def moveToDeparture():
     if type(map_[taxi[0]][taxi[1]]) != type([]):
         board_ = [x[:] for x in board]
         queue = deque([])
-        queue.append([taxi[0], taxi[1]])
+        queue.append([taxi[0], taxi[1], 0])
 
         passengerOnBoard = []
-        cost = 0
+        result = 401
         while queue:
-            row, col = queue.popleft()
+            row, col, cost = queue.popleft()
             for dr, dc in [[1, 0], [-1, 0], [0, 1], [0, -1]]:
                 if 0<=row+dr<=n-1 and 0<=col+dc<=n-1:
                     if board_[row+dr][col+dc] == 0:
                         if type(map_[row+dr][col+dc]) == type([]):
-                            passengerOnBoard.append([row+dr, col+dc])
-                            # cost = min(board_[row][col] + 1, cost)
-                            cost = board_[row][col] + 1
-                            # if row+dr == 6 and col+dc == 2:
-                            #     print(cost)
+                            passengerOnBoard.append([row+dr, col+dc, cost+1])
+                            result = min(cost+1, result)
+
                         elif not passengerOnBoard:
-                            queue.append([row+dr, col+dc])
+                            queue.append([row+dr, col+dc, cost+1])
                             board_[row+dr][col+dc] = board_[row][col] + 1
-        passengerOnBoard.sort(key=lambda x:(x[0], x[1]))
-        return passengerOnBoard, cost
+        passengerOnBoard.sort(key=lambda x:(x[2], x[0], x[1]))
+        return passengerOnBoard, result
 
     else:
         return [taxi], 0
@@ -73,15 +71,12 @@ for startTaxi in range(m):
         fuel = -1
         break
     fuel -= cost
-    taxi = place[0]
+    taxi = place[0][:2]
     place, cost = moveToDestination()
     if fuel < cost or cost == 0:
         fuel = -1
         break
     fuel += cost
     taxi = place
-    print(taxi, cost)
 
-    # print(taxi)
-    # print(fuel)
 print(fuel)
