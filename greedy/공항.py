@@ -5,16 +5,7 @@
 import sys
 g = int(sys.stdin.readline())
 p = int(sys.stdin.readline())
-usable_gate = [int(sys.stdin.readline()) for _ in range(p)]
-gate = set([i for i in range(1, g+1)])
+airplane = [[] for _ in range(p+1)]
 
-count = 0
-for x in usable_gate:
-    if x in gate:
-        gate.remove(x)
-        count += 1
-    else:
-        while x == 0:
-            
-        break
-print(count)
+for i in range(1, p+1):
+    int(sys.stdin.readline()) 
