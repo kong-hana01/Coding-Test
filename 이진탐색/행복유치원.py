@@ -8,7 +8,6 @@ array = list(map(int, input().split()))
 start = 0
 end = array[-1] - array[0]
 cost = end
-result = 0
 while start <= end:
     mid = (start+end) // 2
     count = 1
@@ -30,8 +29,6 @@ while start <= end:
     
     else:
         end = mid - 1
-        if cost > mid:
-            cost = mid
-            result = total
+        cost = min(total, cost)
 
-print(result)
+print(cost)
