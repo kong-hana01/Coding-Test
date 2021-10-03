@@ -7,15 +7,36 @@ count = 0
 for i in range(n):
     x = array[i]
     for j in range(n):
-        start = j+1
+        if i == j:
+            continue
+        start = 0
         end = n - 1
         check = False
         while start <= end:
             mid = (start+end)//2
             if x == array[j] + array[mid]:
-                if i != mid or (mid-1 >= 0 and array[mid-1] == array[mid]) or (mid+1<=n-1 and array[mid+1] == array[mid]):
+                m = mid
+                while i == m or j == m:
+                    if m == 0:
+                        break
+                    m -= 1
+
+                if (i != m and j != m) and (x == array[j] + array[m]):
                     count += 1
                     check = True
+                    break
+                
+                m = mid
+                while i == m or j == m:
+                    if m == n - 1:
+                        break
+                    m += 1
+
+                if (i != m and j != m) and (x == array[j] + array[m]):
+                    count += 1
+                    check = True
+                    break
+
                 break
                 
             elif x > array[j] + array[mid]:
