@@ -36,7 +36,6 @@ for i in range(n):
                     count += 1
                     check = True
                     break
-
                 break
                 
             elif x > array[j] + array[mid]:
