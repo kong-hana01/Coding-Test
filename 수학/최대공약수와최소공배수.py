@@ -6,8 +6,8 @@ def gcd(n, m):
     if n < m:
         n, m = m, n 
     if n % m == 0:
-        return min(n,m)
-    return gcd(min(n,m), n % m)
+        return m
+    return gcd(m, n % m)
     
 def lcm(n, m):
     return n * m // gcd(n,m)
