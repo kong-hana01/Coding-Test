@@ -1,9 +1,19 @@
 # https://www.acmicpc.net/problem/9095
+# 접근 방법
+# n이 4이상일 때, 다음과 같이 식을 추론할 수 있다. an = (1 + an-1) + (2 + an-2) + (3 + an-3)
+# n이 4이상일 때, n을 1, 2, 3의 합으로 나타내는 방법은 다음과 같이 표현할 수 있다. An = A(n-1)  + A(n-2) + A(n-3)
+# 위의 일반항을 토대로 다이나믹 프로그래밍을 진행한다.
+def find_count(n):
+    if d[n]:
+        return d[n]
+    d[n] = find_count(n-1) + find_count(n-2) + find_count(n-3)
+    return d[n]
 
-# 정수 n의 값이 최대 11보다 작은 양수이므로 계산하는데 오랜 시간이 걸리지 않는다.
-# 그럼에도 불구하고 다이나믹프로그래밍에 문제가 있는 이유는 테스트 케이스가 매우 많아 이를 저장하고 풀지 않으면 정해진 시간 내에 풀지 못하도록 되어있는 것 같다.
-# 보류
-import itertools
-
-d = [1] * 12
-n = 4
+d = [0 for _ in range(11)]
+d[1] = 1
+d[2] = 2
+d[3] = 4
+tc = int(input())
+for _ in range(tc):
+    n = int(input())
+    print(find_count(n))
