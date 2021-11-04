@@ -13,12 +13,14 @@ for i in range(4):
         board[i][j] = temp[j*2]
         fish_direction[temp[j*2]] = temp[j*2 + 1] - 1
         fish_place[temp[j*2]] = [i, j]
-result = 0
+
+
 feed_num = board[0][0]
 fish_direction[0] = fish_direction[feed_num]
 fish_place[feed_num] = 0
 fish_place[0] = [0, 0]
 board[0][0] = -1
+result = 0
 def move(board_, fish_place_, fish_direction_):
     for num in range(1, 17):
         move_check = False
@@ -34,39 +36,36 @@ def move(board_, fish_place_, fish_direction_):
         
         if move_check:
             num2 = board_[r+dr][c+dc]
-            board_[r+dr][c+dc], board_[r][c] = board_[r][c], board_[r+dr][c+dc]
-            fish_place_[num], fish_place_[num2] = fish_place_[num2], fish_place_[num]
+            if num2 != 0:
+                board_[r+dr][c+dc], board_[r][c] = board_[r][c], board_[r+dr][c+dc]
+                fish_place_[num], fish_place_[num2] = fish_place_[num2], fish_place_[num]
+            else:
+                board_[r+dr][c+dc], board_[r][c] = board_[r][c], board_[r+dr][c+dc]
+                fish_place_[num] = [r+dr, c+dc]
     
     return board_
 
-def feed(b, fish_place, fish_direction, total_sum):
+def feed(b, fish_place1, fish_direction1, total_sum):
     global result
-    r, c = fish_place[0]
-    dr, dc = direction[fish_direction[0]]
+    r, c = fish_place1[0]
+    dr, dc = direction[fish_direction1[0]]
     for i in range(1, 4):
         temp_sum = total_sum
         if 0<=r+dr*i<=3 and 0<=c+dc*i<=3 and b[r+dr*i][c+dc*i]:
             board_ = [x[:] for x in b]
-            fish_place_ = fish_place[:]
-            fish_direction_ = fish_direction[:]
+            fish_place_ = fish_place1[:]
+            fish_direction_ = fish_direction1[:]
             feed_num = board_[r+dr*i][c+dc*i]
             board_[r+dr*i][c+dc*i] = -1
             board_[r][c] = 0
             fish_place_[0] = [r+dr*i, c+dc*i]
-            print(r, c)
-            print(fish_place_[0])
-            print(board_)
-            print(fish_direction_)
-            print(feed_num)
-            print()
             fish_place_[feed_num] = 0
             fish_direction_[0] = fish_direction_[feed_num]
-            temp_sum += feed_num
-            
+            temp_sum += feed_num            
             feed(move(board_, fish_place_, fish_direction_), fish_place_, fish_direction_, temp_sum)     
-            return
+    
     result = max(result, total_sum)
 
 move(board, fish_place, fish_direction)
 feed(board, fish_place, fish_direction, 0)
-print(result)
+print(result + feed_num)
