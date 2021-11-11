@@ -2,6 +2,7 @@
 # 접근 방법
 # BFS를 활용해 승객을 태우고 목적지에 이동하는 과정을 구현한다.
 # 최대 연산 횟수: 20x20x400x2 = 32만
+
 from collections import deque
 
 n, m, fuel = map(int, input().split())
