@@ -1,4 +1,4 @@
-# acmicpc.net/problem/11049
+# https://www.acmicpc.net/problem/11049
 # 접근 방법 2
 # N번의 행렬의 곱으로 이루어진 행렬(An, n은 n번의 곱으로 이루어진 행렬이라는 의미)의 최소 연산 수는 min(An-1 x A1, An-2 x A2, An-3, x A3 ... A1 x An-1)이다.
 # 위의 점화식을 기준으로 다이나믹 프로그래밍을 진행한다.
