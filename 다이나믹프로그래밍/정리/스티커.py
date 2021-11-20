@@ -1,4 +1,4 @@
-# 문제 https://www.acmicpc.net/problem/9465
+# https://www.acmicpc.net/problem/9465
 # 접근방법
 # 스티커를 열 방향으로 차례로 선택하면서 왼쪽 대각선에 위치한 스티커와 그 왼쪽에 있는 스티커 중 높은 값과 현재 스티커의 점수와 더한다.
 

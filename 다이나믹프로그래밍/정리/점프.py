@@ -8,22 +8,6 @@ d = [[0 for _ in range(n)] for _ in range(n)]
 d[0][0] = 1
 queue = deque([])
 queue.append([0, 0])
-# while queue:
-#     row, col = queue.popleft()
-
-#     x = array[col][row]
-#     if row+x <= n-1:
-#         d[col][row+x] += d[col][row]
-#         if row+x != n-1 or col != n-1:
-#             queue.append([row+x, col])
-
-#     if col+x <= n-1:
-#         d[col+x][row] += d[col][row]
-#         if row != n-1 or col+x != n-1:
-#             queue.append([row, col+x])
-
-# print(d[n-1][n-1])
-
 for i in range(n):
     for j in range(n):
         if d[i][j] > 0 and array[i][j] != 0:
