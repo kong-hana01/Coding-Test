@@ -1,4 +1,4 @@
-# acmicpc.net/problem/22116
+# https://www.acmicpc.net/problem/22116
 # 접근방법
 # 다익스트라 최단경로 알고리즘을 활용해 문제를 해결한다.
 def dijkstra(row, col):
