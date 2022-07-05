@@ -1,4 +1,4 @@
-# acmicpc.net/problem/1049
+# https://www.acmicpc.net/problem/1049
 # 접근 방법
 # m개의 브랜드에 대해 단위비용과 패키지비용을 고려해 가장 최소의 비용을 구한다.
 n, m = map(int, input().split())
