@@ -9,8 +9,6 @@ dp = [[[0, 0] for _ in range(MAX_K+1)] for _ in range(MAX_N+1)] # 끝자리에 �
 dp[1][0][0] = 1
 dp[1][0][1] = 1
 for i in range(1, MAX_N+1):
-    # dp[i][0][0] = 1
-    # dp[i][0][1] = 1
     for j in range(i):
         dp[i][j+1][1] += dp[i-1][j][1]
         dp[i][j][1] += dp[i-1][j][0]
